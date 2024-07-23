@@ -1,0 +1,11 @@
+footer {
+  background-color: transparent;
+}
+
+footer .rounded-full {
+  background-color: transparent;
+}
+
+footer .hover\:bg-neutral-100:hover {
+  background-color: #e0e0e0; /* หรือสีอื่นที่คุณต้องการเมื่อ hover */
+}

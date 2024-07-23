@@ -1,0 +1,60 @@
+<div class="min-h-screen bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg text-white p-4">
+  <div class="container mx-auto bg-black bg-opacity-70 rounded-lg shadow-lg p-6">
+    <h1 class="text-3xl font-extrabold mb-6">Product Categories</h1>
+
+    <!-- Search Input -->
+    <div class="mb-4">
+      <input type="text" class="bg-gray-800 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto" placeholder="Search products..." [(ngModel)]="searchText" (input)="filterProductsByText()">
+    </div>
+
+    <!-- Product Type Filters -->
+    <div class="flex flex-wrap gap-2 mb-6">
+      <button
+        class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700"
+        (click)="filterProducts('all')"
+      >
+        All
+      </button>
+      <button
+        *ngFor="let type of productTypeList"
+        class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700"
+        (click)="filterProducts(type.productTypeId)"
+      >
+        {{ type.productTypeName }}
+      </button>
+    </div>
+
+    <!-- No Products Found Message -->
+    <div *ngIf="productList.length === 0 && !loading" class="text-center text-gray-400">
+      No products found.
+    </div>
+
+    <!-- Product Grid -->
+    <div *ngIf="productList.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
+      <div *ngFor="let product of filteredProductList" (click)="OnGetProductById(product.productId)"
+        class="card card-compact bg-base-100 shadow-xl cursor-pointer transition-transform transform hover:scale-105">
+        <figure>
+          <img *ngIf="product.imgList.length > 0" [src]="product.imgList[0].value" alt="product"
+            class="w-full h-64 object-cover rounded-t-lg sm:rounded-lg" />
+        </figure>
+        <div class="flex justify-center mt-2 space-x-2">
+          <ng-container *ngIf="product.imgList.length > 1">
+            <img *ngFor="let img of product.imgList.slice(1, 4)" [src]="img.value" alt="product-thumbnail"
+              class="w-16 h-16 object-cover border border-gray-300 rounded-md" />
+          </ng-container>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title text-black">{{ product.productName }}</h2>
+          <p class="font-bold text-black">{{ product.productDesc }}</p>
+          <p class="font-bold text-black">ราคา: {{ product.productPrice }}</p>
+          <p class="font-bold text-black">จำนวน: {{ product.productStock }}</p>
+          <p class="font-bold text-black">ประเภท: {{ product.productType[0]?.productTypeName }}</p>
+          <div class="card-actions justify-end">
+            <button class="btn btn-primary" (click)="addToCart(product, $event)">Buy Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

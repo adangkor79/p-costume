@@ -1,0 +1,71 @@
+<form class="gradient-custom" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+	<div class="container py-5 h-100">
+		<div class="row d-flex justify-content-center align-items-center h-100">
+			<div class="col-14 col-md-10 col-lg-8 col-xl-7">
+				<div class="card bg-black/70 backdrop-blur-sm text-white" style="border-radius: 1rem;">
+					<div class="card-body p-5">
+						<h2 class="fw-bold mb-2 text-uppercase text-center">REGISTER</h2>
+						<p class="text-white-50 mb-5 text-center">Please enter your information!</p>
+
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+							<div>
+								<div data-mdb-input-init class="form-outline form-white mb-4">
+									<input formControlName="userName" type="text" id="typeUsernameX"
+										class="form-control form-control-lg" placeholder="User Name" />
+									<label class="form-label" for="typeUsernameX">ชื่อผู้ใช้(username)</label>
+								</div>
+
+								<div data-mdb-input-init class="form-outline form-white mb-4">
+									<input formControlName="userPassword" type="password" id="typePasswordA"
+										class="form-control form-control-lg" placeholder="Password" />
+									<label class="form-label" for="typePasswordA">รหัสผ่าน(password)</label>
+								</div>
+
+								<div data-mdb-input-init class="form-outline form-white mb-4">
+									<input formControlName="confirmPassword" type="password" id="typeRepeatPasswordA"
+										class="form-control form-control-lg" placeholder="Confirm Password" />
+									<label class="form-label" for="typeRepeatPasswordA">ยืนยันรหัสผ่าน(repeat password)</label>
+								</div>
+							</div>
+
+							<div>
+								<div data-mdb-input-init class="form-outline form-white mb-4">
+									<input formControlName="firstName" type="text" id="typeFirstNameX"
+										class="form-control form-control-lg" placeholder="First Name" />
+									<label class="form-label" for="typeFirstNameX">First Name</label>
+								</div>
+
+								<div data-mdb-input-init class="form-outline form-white mb-4">
+									<input formControlName="lastName" type="text" id="typeLastNameX"
+										class="form-control form-control-lg" placeholder="Last Name" />
+									<label class="form-label" for="typeLastNameX">Last Name</label>
+								</div>
+
+								<div data-mdb-input-init class="form-outline form-white mb-4">
+									<input formControlName="email" type="text" id="typeEmailX"
+										class="form-control form-control-lg" placeholder="Email" />
+									<label class="form-label" for="typeEmailX">อีเมล</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="text-center mt-4">
+							<p *ngIf="isPassword" class="text-red-500">กรุณากรอก Password ให้ตรงกันกับด้านบ้านด้วยค่ะ</p>
+						</div>
+
+						<div class="text-center mt-4">
+							<button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5"
+								type="submit">บันทึก</button>
+						</div>
+
+						<div class="d-flex justify-content-center text-center mt-4 pt-1">
+							<a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+							<a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
+							<a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

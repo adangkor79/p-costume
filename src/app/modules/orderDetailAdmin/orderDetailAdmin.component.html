@@ -1,0 +1,48 @@
+<div class="min-h-screen bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg text-white p-4">
+  <div class="container mx-auto bg-black bg-opacity-70 rounded-lg shadow-lg p-6">
+    <h2 class="text-3xl font-extrabold mb-6">Order Details</h2>
+    <div *ngIf="order">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div class="p-4 bg-gray-800 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold mb-2">Order Information</h3>
+          <p>Order ID: {{ order.orderId }}</p>
+          <p>User ID: {{ order.userDetailId }}</p>
+          <p>Payment ID: {{ order.paymentId }}</p>
+          <p>Total Amount: {{ order.totalAmount | currency }}</p>
+          <p>Order Date: {{ order.orderDate | date:'short' }}</p>
+          <p>Status: {{ order.status }}</p>
+        </div>
+
+        <div class="p-4 bg-gray-800 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold mb-2">User Information</h3>
+          <p>User ID: {{ order.userDetail.userId }}</p>
+          <p>First Name: {{ order.userDetail.firstName }}</p>
+          <p>Last Name: {{ order.userDetail.lastName }}</p>
+          <p>Age: {{ order.userDetail.age }}</p>
+          <p>Phone: {{ order.userDetail.phone }}</p>
+          <p>Email: {{ order.userDetail.email }}</p>
+          <p>Line: {{ order.userDetail.line }}</p>
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <h3 class="text-xl font-semibold">Order Items</h3>
+        <div *ngFor="let item of order.items" class="bg-gray-800 rounded-lg shadow-md p-4 mb-4 flex items-center">
+          <img [src]="item.images && item.images.length > 0 ? item.images[0].value : 'assets/default-image.jpg'" alt="product" class="w-24 h-24 object-cover rounded-lg" />
+          <div class="flex-1 ml-4">
+            <h3 class="text-2xl font-semibold">Product ID: {{ item.productId }}</h3>
+            <p>Quantity: {{ item.quantity }}</p>
+            <p>Price: {{ item.price | currency }}</p>
+            <p>Status: {{ item.status }}</p>
+            <div *ngIf="item.images && item.images.length > 0">
+              <h6 class="text-lg font-semibold">Product Images:</h6>
+              <div class="product-images flex flex-wrap">
+                <img *ngFor="let image of item.images" [src]="image.value" [alt]="image.key" class="w-16 h-16 object-cover rounded-lg m-1" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

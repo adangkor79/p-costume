@@ -1,0 +1,13 @@
+<app-header flexLayout="column"></app-header>
+<div flexLayout="row" fxFlex>
+  <div fxFlex="10" fxHide fxShow.gt-sm>
+    <!-- Content that should be hidden on small screens -->
+  </div>
+  <div fxFlex class="">
+    <router-outlet></router-outlet>
+  </div>
+  <div fxFlex="10" fxHide fxShow.gt-sm>
+    <!-- Content that should be hidden on small screens -->
+  </div>
+</div>
+<app-footer flexLayout="column"></app-footer>
