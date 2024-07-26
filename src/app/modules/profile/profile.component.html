@@ -1,98 +1,99 @@
-<div class="min-h-[100vh] bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg text-white">
+<div class="min-h-[100vh] text-black">
   <div class="drawer drawer-end min-h-[100vh]">
     <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content flex flex-col items-center mt-5">
-      <div class="bg-white bg-opacity-10 rounded-lg shadow-xl w-full md:w-1/2 overflow-hidden">
-        <div class="h-[140px] bg-gradient-to-r from-gray-700 to-black"></div>
-        <div *ngIf="userDetail" class="px-5 py-2 flex flex-col gap-3 pb-6 bg-black/70">
+    <div class="drawer-content flex flex-col items-center mt-5 lg:w-full p-4 space-y-4">
+      <div class="bg-transparent rounded-lg shadow-xl w-full lg:w-full overflow-hidden">
+
+        <div class="h-[140px] bg-transparent"></div>
+        <div *ngIf="userDetail" class="px-6 py-1 flex flex-col gap-3 pb-6 bg-transparent">
           <div>
-            <h3 class="text-2xl text-white relative font-bold leading-6">{{ userDetail.firstName }} {{ userDetail.lastName }}</h3>
-            <p class="text-sm text-gray-300">{{ userDetail.email }}</p>
+            <h3 class="text-3xl text-black relative font-bold leading-6">{{ userDetail.firstName }} {{ userDetail.lastName }}</h3>
+            <p class="text-lg text-gray-700">{{ userDetail.email }}</p>
           </div>
-          <label for="my-drawer-4" class="drawer-button btn btn-primary max-w-[20vh] flex items-center">
+          <h4 class="text-xl font-medium leading-3 text-gray-700">เกี่ยวกับฉัน</h4>
+          <p class="text-lg text-gray-700"><strong>ชื่อผู้ใช้:</strong> {{ userDetail.userName }}</p>
+          <p class="text-lg text-gray-700"><strong>ชื่อ:</strong> {{ userDetail.firstName }}</p>
+          <p class="text-lg text-gray-700"><strong>นามสกุล:</strong> {{ userDetail.lastName }}</p>
+          <p class="text-lg text-gray-700"><strong>โทรศัพท์:</strong> {{ userDetail.phone }}</p>
+          <p class="text-lg text-gray-700"><strong>อายุ:</strong> {{ userDetail.age }}</p>
+          <p class="text-lg text-gray-700"><strong>อีเมล:</strong> {{ userDetail.email }}</p>
+          <p class="text-lg text-gray-700"><strong>ที่อยู่:</strong> {{ userDetail.address }}</p>
+
+          <label for="my-drawer-4" class="drawer-button btn btn-primary max-w-[20vh] flex items-center mt-4 bg-purple-200 text-purple-500 rounded-lg shadow-md hover:bg-purple-800">
             <i class="fas fa-edit mr-2"></i>
-            อัพเดตโปรไฟล์
+            แก้ไข
           </label>
-          <h4 class="text-md font-medium leading-3 text-gray-300">About</h4>
-          <p class="text-sm text-gray-300"><strong>Username:</strong> {{ userDetail.userName }}</p>
-          <p class="text-sm text-gray-300"><strong>Phone:</strong> {{ userDetail.phone }}</p>
-          <p class="text-sm text-gray-300"><strong>Age:</strong> {{ userDetail.age }}</p>
-          <p class="text-sm text-gray-300"><strong>Email:</strong> {{ userDetail.email }}</p>
-          <p class="text-sm text-gray-300"><strong>Address:</strong> {{ userDetail.address }}</p>
+
         </div>
       </div>
     </div>
+
+
     <div class="drawer-side">
       <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
-      <ul class="menu bg-gray-800 text-white min-h-full w-50 p-4">
+      <ul class="menu text-black min-h-full w-50 p-4 border border-black lg:w-full">
         <div class="container">
           <div class="col-md-12">
-            <div class="card bg-black bg-opacity-70 text-white">
+            <div class="card text-black">
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-12">
-                    <h4>{{title}}</h4>
-                    <hr>
+                    <h4 class="text-3xl">{{title}}</h4>
+                    <hr class="border-black">
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-md-12">
                     <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
                       <div class="form-group row">
-                        <label for="username" class="col-4 col-form-label">User Name*</label>
+                        <label for="username" class="col-4 col-form-label text-xl">ชื่อผู้ใช้*</label>
                         <div class="col-12">
-                          <input formControlName="userName" placeholder="Username" class="form-control here bg-gray-900 text-white" required="required" type="text" readonly>
+                          <input formControlName="userName" placeholder="ชื่อผู้ใช้" class="form-control here bg-gray-200 text-black text-xl" required="required" type="text" readonly>
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="name" class="col-4 col-form-label">First Name</label>
+                        <label for="name" class="col-4 col-form-label text-xl">ชื่อ</label>
                         <div class="col-12">
-                          <input formControlName="firstName" placeholder="First Name" class="form-control here bg-gray-900 text-white" type="text">
+                          <input formControlName="firstName" placeholder="ชื่อ" class="form-control here bg-gray-200 text-black text-xl" type="text">
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="lastname" class="col-4 col-form-label">Last Name</label>
+                        <label for="lastname" class="col-4 col-form-label text-xl">นามสกุล</label>
                         <div class="col-12">
-                          <input formControlName="lastName" placeholder="Last Name" class="form-control here bg-gray-900 text-white" type="text">
+                          <input formControlName="lastName" placeholder="นามสกุล" class="form-control here bg-gray-200 text-black text-xl" type="text">
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="text" class="col-4 col-form-label">Phone</label>
+                        <label for="text" class="col-4 col-form-label text-xl">โทรศัพท์</label>
                         <div class="col-12">
-                          <input formControlName="phone" placeholder="Phone" class="form-control here bg-gray-900 text-white" required="required" type="text">
+                          <input formControlName="phone" placeholder="โทรศัพท์" class="form-control here bg-gray-200 text-black text-xl" required="required" type="text">
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="age" class="col-4 col-form-label">Age</label>
+                        <label for="age" class="col-4 col-form-label text-xl">อายุ</label>
                         <div class="col-12">
-                          <input formControlName="age" placeholder="Age" class="form-control here bg-gray-900 text-white" required="required" type="text">
+                          <input formControlName="age" placeholder="อายุ" class="form-control here bg-gray-200 text-black text-xl" required="required" type="text">
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="email" class="col-4 col-form-label">Email</label>
+                        <label for="email" class="col-4 col-form-label text-xl">อีเมล</label>
                         <div class="col-12">
-                          <input formControlName="email" placeholder="Email" class="form-control here bg-gray-900 text-white" required="required" type="text">
+                          <input formControlName="email" placeholder="อีเมล" class="form-control here bg-gray-200 text-black text-xl" required="required" type="text">
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="address" class="col-4 col-form-label">Address</label>
+                        <label for="address" class="col-4 col-form-label text-xl">ที่อยู่</label>
                         <div class="col-12">
-                          <input formControlName="address" placeholder="Address" class="form-control here bg-gray-900 text-white" required="required" type="text">
+                          <input formControlName="address" placeholder="ที่อยู่" class="form-control here bg-gray-200 text-black text-xl" required="required" type="text">
                         </div>
                       </div>
                       <div class="form-group row">
                         <div class="offset-4 col-12">
-                          <button name="submit" type="submit" class="btn btn-primary">Update My Profile</button>
+                          <button name="submit" type="submit" class="btn btn-primary text-xl bg-purple-200 text-purple-500 rounded-lg shadow-md hover:bg-purple-800">บันทึก</button>
                         </div>
                       </div>
                     </form>
+
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ul>
-    </div>
-  </div>
-</div>

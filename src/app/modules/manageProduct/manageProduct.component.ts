@@ -20,6 +20,7 @@ export class ManageProductComponent implements OnInit {
   productImgList: any;
   productList: any;
   productTypeList: any = [];
+
   ngOnInit() {
     this.getProductTypeAll();
 

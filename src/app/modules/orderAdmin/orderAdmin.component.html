@@ -1,53 +1,55 @@
-<div class="container mx-auto">
-  <div class="row">
-    <div class="col-12">
-      <div class="card my-4">
-        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-          <div class="bg-blue-200 shadow-blue-200 border-radius-lg pt-4 pb-3">
-            <h6 class="text-white text-capitalize ps-3">Manage Orders</h6>
+<div class="container ">
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card my-4">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-pink-300 shadow-blue-200 border-radius-lg pt-4 pb-3">
+              <h6 class="text-white text-capitalize ps-3">จัดการคำสั่งซื้อ</h6>
+            </div>
           </div>
-        </div>
-        <div class="card-body px-0 pb-2">
-          <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Order ID</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User ID</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Payment ID</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total Amount</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Order Date</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                  <th class="text-secondary opacity-7"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let order of orders">
-                  <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{ order.orderId }}</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{ order.userDetailId }}</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{ order.paymentId }}</span>
-                  </td>
-                  <td class="align-middle text-center text-sm">
-                    <span class="text-secondary text-xs font-weight-bold">{{ order.totalAmount }}</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{ order.orderDate | date }}</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{ order.status }}</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <button class="btn btn-primary" (click)="viewOrder(order)">View</button>
-                    <button class="btn btn-danger" (click)="deleteOrder(order.orderId)">Delete</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">หมายเลขคำสั่งซื้อ</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">หมายเลขผู้ใช้</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">หมายเลขการชำระเงิน</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">จำนวนเงินรวม</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">วันที่คำสั่งซื้อ</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">สถานะ</th>
+                    <th class="text-secondary opacity-7"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let order of orders">
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{ order.orderId }}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{ order.userDetailId }}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{ order.paymentId }}</span>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span class="text-secondary text-xs font-weight-bold">{{ order.totalAmount | currency:'THB' }}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{ order.orderDate | date:'short' }}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{ getStatusText(order.status) }}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <button class="btn btn-primary" (click)="viewOrder(order)">ดู</button>
+                      <button class="btn btn-danger" (click)="deleteOrder(order.orderId)">ลบ</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

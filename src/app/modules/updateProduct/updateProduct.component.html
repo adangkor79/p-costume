@@ -34,27 +34,18 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="price" class="col-4 col-form-label">ราคา</label>
+                <label for="productPrice" class="col-4 col-form-label">ราคา</label>
                 <div class="col-12">
-                  <input formControlName="price" step='0.01' placeholder="ราคา" class="form-control" type="number">
+                  <input formControlName="productPrice" step='0.01' placeholder="ราคา" class="form-control" type="number">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="quantity" class="col-4 col-form-label">จำนวน</label>
+                <label for="productStock" class="col-4 col-form-label">จำนวน</label>
                 <div class="col-12">
-                  <input formControlName="quantity" placeholder="จำนวน" class="form-control here" type="number">
+                  <input formControlName="productStock" placeholder="จำนวน" class="form-control here" type="number">
                 </div>
               </div>
-              <div class="form-group row">
-                <div class="carousel-item">
 
-                  <div class="carousel-caption d-none d-md-block">
-                    <h5>...</h5>
-                    <p>...</p>
-                  </div>
-                </div>
-
-              </div>
               <div class="row row-cols-2 row-cols-lg-3">
                 <div class="form-group row" *ngFor="let item of  ImageList">
                   <img [src]="item.value" class="d-block max-w-[300px] ">
@@ -73,7 +64,7 @@
               </div>
               <div class="form-group row">
                 <div class="offset-5 col-12">
-                  <button name="submit" type="submit" class="btn btn-primary">Save Product</button>
+                  <button name="submit" type="submit" class="btn btn-primary">บันทึก</button>
                 </div>
               </div>
             </form>

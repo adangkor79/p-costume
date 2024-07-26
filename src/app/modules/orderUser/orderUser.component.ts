@@ -33,11 +33,11 @@ export class OrderUserComponent implements OnInit {
           console.log(this.orders);
         },
         (error) => {
-          console.error('Failed to fetch orders:', error);
+          console.error('ไม่สามารถดึงข้อมูลคำสั่งซื้อได้:', error);
         }
       );
     } else {
-      console.error('User detail not found in session storage');
+      console.error('ไม่พบข้อมูลผู้ใช้ใน session storage');
     }
   }
 
@@ -46,18 +46,33 @@ export class OrderUserComponent implements OnInit {
   }
 
   deleteOrder(orderId: number) {
-    if (confirm('Are you sure you want to delete this order?')) {
+    if (confirm('คุณแน่ใจว่าต้องการลบคำสั่งซื้อนี้หรือไม่?')) {
       this.callService.deleteOrder(orderId).subscribe(
         (response) => {
-          console.log('Order deleted successfully');
-          this.fetchOrders(); // Refresh the orders list
-          alert('Order deleted successfully.');
+          console.log('ลบคำสั่งซื้อเรียบร้อยแล้ว');
+          this.fetchOrders(); // รีเฟรชรายการคำสั่งซื้อ
+          alert('ลบคำสั่งซื้อเรียบร้อยแล้ว.');
         },
         (error) => {
-          console.error('Failed to delete order:', error);
-          alert('Failed to delete the order. Please try again.');
+          console.error('ไม่สามารถลบคำสั่งซื้อได้:', error);
+          alert('ไม่สามารถลบคำสั่งซื้อได้ กรุณาลองอีกครั้ง.');
         }
       );
+    }
+  }
+
+  getStatusText(status: string): string {
+    switch (status) {
+      case 'unpaid':
+        return 'ยังไม่ชำระเงิน';
+      // case 'paid':
+      //   return 'ชำระเงินแล้ว';
+      // case 'shipped':
+      //   return 'จัดส่งแล้ว';
+      // case 'delivered':
+      //   return 'จัดส่งถึงแล้ว';
+      default:
+        return 'กำลังตรวจสอบ';
     }
   }
 }

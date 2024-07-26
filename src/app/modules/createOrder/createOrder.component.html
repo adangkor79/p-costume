@@ -1,39 +1,63 @@
-<div class="min-h-screen bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg text-white p-4">
-  <div class="container mx-auto bg-black bg-opacity-70 rounded-lg shadow-lg p-6">
-    <h2 class="text-3xl font-extrabold mb-6">Order Summary</h2>
-    <div class="mb-4">
-      <h3 class="text-xl font-semibold">User Information</h3>
-      <p>Name: {{ userDetail.userName }}</p>
-      <p>Email: {{ userDetail.email }}</p>
-      <p>Phone: {{ userDetail.phone }}</p>
-      <p>Line: {{ userDetail.line }}</p>
-    </div>
-    <div class="mb-4">
-      <h3 class="text-xl font-semibold">Payment Method</h3>
-      <div>
-        <label>
-          <input type="radio" name="paymentMethod" value="1" [(ngModel)]="selectedPaymentMethod" > Credit Card
-        </label>
-      </div>
-      <!-- เพิ่มปุ่มเพื่อไปยังหน้า Payment -->
-      <button class="bg-green-500 text-white px-4 py-2 rounded-md mt-4" (click)="placeOrder()">Proceed to Payment</button>
+<div class="min-h-screen text-black p-4">
+  <div class="container mx-auto rounded-lg shadow-lg p-6">
+    <h2 class="text-3xl font-extrabold mb-6">สรุปรายการสั่งซื้อ</h2>
 
-    </div>
     <div class="mb-6">
-      <h3 class="text-xl font-semibold">Cart Items</h3>
-      <div *ngFor="let item of cart" class="bg-gray-800 rounded-lg shadow-md p-4 mb-4 flex items-center">
+      <h3 class="text-xl font-semibold">รายการในตะกร้า</h3>
+      <div *ngFor="let item of cart" class="rounded-lg shadow-md p-4 mb-4 flex items-center">
         <img [src]="item.imgList.length > 0 ? item.imgList[0].value : 'assets/default-image.jpg'" alt="product" class="w-24 h-24 object-cover rounded-lg" />
         <div class="flex-1 ml-4">
           <h3 class="text-2xl font-semibold">{{ item.productName }}</h3>
           <p>{{ item.productDesc }}</p>
-          <p>Price: {{ item.productPrice | currency }}</p>
-          <p>Quantity: {{ item.quantity }}</p>
-          <p>Total: {{ (item.productPrice * item.quantity) | currency }}</p>
+          <p>ราคา: {{ item.productPrice | currency:'THB' }}</p>
+          <p>จำนวน: {{ item.quantity }}</p>
+          <p>รวม: {{ (item.productPrice * item.quantity) | currency:'THB' }}</p>
         </div>
       </div>
     </div>
+
+
+    <div class="mb-4">
+      <h3 class="text-xl font-semibold">วิธีการชำระเงิน</h3>
+      <div>
+        <label>
+          <input type="radio" name="paymentMethod" value="1" [(ngModel)]="selectedPaymentMethod"> QR พร้อมเพย์
+        </label>
+      </div>
+    </div>
+
+    <div class="mb-4 bg-white rounded-lg shadow-md p-6">
+      <h3 class="text-xl font-semibold mb-4 text-gray-800">ข้อมูลผู้ใช้</h3>
+      <div class="space-y-2">
+        <div class="flex items-center">
+          <span class="font-medium text-gray-700 w-24">ชื่อ:</span>
+          <p class="text-gray-900">{{ userDetail.firstName }}</p>
+        </div>
+        <div class="flex items-center">
+          <span class="font-medium text-gray-700 w-24">นามสกุล:</span>
+          <p class="text-gray-900">{{ userDetail.lastName }}</p>
+        </div>
+        <div class="flex items-center">
+          <span class="font-medium text-gray-700 w-24">โทรศัพท์:</span>
+          <p class="text-gray-900">{{ userDetail.phone }}</p>
+        </div>
+        <div class="flex items-center">
+          <span class="font-medium text-gray-700 w-24">ที่อยู่:</span>
+          <p class="text-gray-900">{{ userDetail.address }}</p>
+        </div>
+      </div>
+      <div class="mt-4 text-right">
+        <button (click)="editProfile()" class="bg-purple-400 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition-colors">
+          แก้ไข
+        </button>
+      </div>
+    </div>
+
+
+
+
     <div class="flex justify-end">
-      <button class="btn btn-primary" (click)="placeOrder()">Place Order</button>
+      <button class="bg-purple-400 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition-colors" (click)="placeOrder()" [disabled]="isFormInvalid">ยืนยันคำสั่งซื้อ</button>
     </div>
   </div>
 </div>

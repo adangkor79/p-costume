@@ -190,20 +190,49 @@ export class CallserviceService {
       API_ENDPOINT.concat('/order/getOrdersByUserId/' + userDetailId)
     );
   }
-  registerPayment(paymentDto: FormData): Observable<any> {
+
+  saveOrderImage(formData: FormData, orderId: any): Observable<any> {
     return this.http.post<any>(
-      API_ENDPOINT.concat('/payment/register'),
-      paymentDto,
-      httpOptionsMultipart
+      API_ENDPOINT.concat('/order/saveOrderImg/' + orderId),
+      formData
     );
   }
 
-  saveOrderDetail(orderDetail: any): Observable<any> {
-    const body = JSON.stringify(orderDetail);
-    return this.http.post<any>(
-      API_ENDPOINT.concat('/order/addOrderDetail'),
-      body,
+  deleteOrderImage(fileName: any): Observable<any> {
+    return this.http.delete(
+      API_ENDPOINT.concat('/order/deleteOrderImgByFileName?fileName=' + fileName)
+    );
+  }
+
+  getBlobOrderThumbnail(fileName: string): Observable<Blob> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    });
+    return this.http.get<Blob>(
+      API_ENDPOINT.concat('/order/getImageByte?fileName=' + fileName),
+      { headers: headers, responseType: 'blob' as 'json' }
+    );
+  }
+
+  getOrderImageByte(fileName: string): Observable<Blob> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    });
+    return this.http.get<Blob>(
+      API_ENDPOINT.concat('/order/getImageByte?fileName=' + fileName),
+      { headers: headers, responseType: 'blob' as 'json' }
+    );
+  }
+
+  updateOrder(orderId: number, updatedOrder: any): Observable<any> {
+    return this.http.put(
+      API_ENDPOINT.concat('/order/updateOrder/' + orderId),
+      updatedOrder,
       httpOptions
     );
   }
+
+
 }

@@ -1,35 +1,38 @@
-<div class="min-h-screen bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg text-white p-4">
-  <div class="container mx-auto bg-black bg-opacity-70 rounded-lg shadow-lg p-6">
-    <h1 class="text-3xl font-extrabold mb-6">Product Categories</h1>
+<div class="min-h-screen bg-transparent text-white p-4 w-full">
 
-    <!-- Search Input -->
-    <div class="mb-4">
-      <input type="text" class="bg-gray-800 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto" placeholder="Search products..." [(ngModel)]="searchText" (input)="filterProductsByText()">
+    <div class="mb-4 flex justify-center">
+      <div class="relative w-full sm:w-1/2">
+        <input type="text" class="bg-white text-black px-4 py-2 pl-10 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full" placeholder="ค้นหาสินค้า..." [(ngModel)]="searchText" (input)="filterProductsByText()">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <svg class="h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 4v2a2 2 0 01-2 2H4m0 0h2a2 2 0 002-2V4m6 0v2a2 2 0 002 2h2m0 0h-2a2 2 0 00-2 2v2m-6 6v2a2 2 0 002 2h2m0 0h-2a2 2 0 01-2-2v-2m6 6v-2a2 2 0 012-2h2m0 0h-2a2 2 0 00-2 2v2m0 0v2a2 2 0 002 2h2m0 0h-2a2 2 0 01-2-2v-2m0-12V4a2 2 0 00-2-2h-2m0 0h2a2 2 0 012 2v2m0 0V4a2 2 0 00-2-2h-2m0 0h2a2 2 0 012 2v2z"/>
+          </svg>
+        </div>
+      </div>
     </div>
 
-    <!-- Product Type Filters -->
-    <div class="flex flex-wrap gap-2 mb-6">
+
+    <div class="flex flex-wrap gap-2 mb-6 justify-center">
       <button
-        class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700"
+        class="text-gray-800  px-4 py-2 rounded hover:bg-purple-300"
         (click)="filterProducts('all')"
       >
-        All
+        ทั้งหมด
       </button>
       <button
         *ngFor="let type of productTypeList"
-        class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700"
+        class=" text-gray-800 px-4 py-2 rounded hover:bg-purple-300"
         (click)="filterProducts(type.productTypeId)"
       >
         {{ type.productTypeName }}
       </button>
     </div>
 
-    <!-- No Products Found Message -->
+
     <div *ngIf="productList.length === 0 && !loading" class="text-center text-gray-400">
       No products found.
     </div>
 
-    <!-- Product Grid -->
     <div *ngIf="productList.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
       <div *ngFor="let product of filteredProductList" (click)="OnGetProductById(product.productId)"
         class="card card-compact bg-base-100 shadow-xl cursor-pointer transition-transform transform hover:scale-105">
@@ -37,24 +40,17 @@
           <img *ngIf="product.imgList.length > 0" [src]="product.imgList[0].value" alt="product"
             class="w-full h-64 object-cover rounded-t-lg sm:rounded-lg" />
         </figure>
-        <div class="flex justify-center mt-2 space-x-2">
-          <ng-container *ngIf="product.imgList.length > 1">
-            <img *ngFor="let img of product.imgList.slice(1, 4)" [src]="img.value" alt="product-thumbnail"
-              class="w-16 h-16 object-cover border border-gray-300 rounded-md" />
-          </ng-container>
-        </div>
         <div class="card-body">
           <h2 class="card-title text-black">{{ product.productName }}</h2>
-          <p class="font-bold text-black">{{ product.productDesc }}</p>
+
           <p class="font-bold text-black">ราคา: {{ product.productPrice }}</p>
-          <p class="font-bold text-black">จำนวน: {{ product.productStock }}</p>
-          <p class="font-bold text-black">ประเภท: {{ product.productType[0]?.productTypeName }}</p>
-          <div class="card-actions justify-end">
-            <button class="btn btn-primary" (click)="addToCart(product, $event)">Buy Now</button>
+
+          <div class="flex justify-end">
+            <button class="bg-purple-500 text-white rounded-full px-4 py-2 hover:bg-purple-700 transition-colors duration-300" (click)="addToCart(product, $event)">เพิ่มไปยังตะกร้า</button>
           </div>
+
         </div>
       </div>
     </div>
   </div>
 
-</div>

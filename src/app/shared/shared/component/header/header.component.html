@@ -1,28 +1,69 @@
-<header class="p-3 bg-dark text-white">
+<header class="p-3 text-black">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
         <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
       </a>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li *ngIf="null != userDetail && userDetail.roleId == 2"><a [routerLink]="['/']" routerLinkActive="router-link-active"  class="nav-link px-2 text-white">หน้าหลัก</a></li>
-        <li *ngIf="null != userDetail && userDetail.roleId == 2"><a [routerLink]="['/profile']" routerLinkActive="router-link-active"  class="nav-link px-2 text-white">โปรไฟล์</a></li>
-        <li *ngIf="null != userDetail && userDetail.roleId == 2"><a [routerLink]="['/cart']" routerLinkActive="router-link-active"  class="nav-link px-2 text-white">ตะกร้า</a></li>
-        <li *ngIf="null != userDetail && userDetail.roleId == 2"><a [routerLink]="['/order-user']" routerLinkActive="router-link-active"  class="nav-link px-2 text-white">ออเดอร์</a></li>
-        <li *ngIf="null != userDetail && userDetail.roleId == 1"><a [routerLink]="['/dashbord-admin']" routerLinkActive="router-link-active"  class="nav-link px-2 text-white">หน้าแอดมิน</a></li>
-        <li *ngIf="null != userDetail && userDetail.roleId == 1"><a [routerLink]="['/manage-user']" routerLinkActive="router-link-active"  class="nav-link px-2 text-white">จัดการลูกค้า</a></li>
-        <li *ngIf="null != userDetail && userDetail.roleId == 1"><a [routerLink]="['/manage-product']" class="nav-link px-2 text-white">จัดการสินค้า</a></li>
-        <li *ngIf="null != userDetail && userDetail.roleId == 1"><a [routerLink]="['/order-admin']" class="nav-link px-2 text-white">ออเดอร์</a></li>
-        <li *ngIf="null != userDetail && userDetail.roleId == 1"><a href="#" class="nav-link px-2 text-white" [routerLink]="['/report']">รายงาน</a></li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 2">
+          <a [routerLink]="['/']" routerLinkActive="router-link-active" class="nav-link px-2 text-black hover:text-pink-500">
+            <i class="fas fa-home"></i>
+            หน้าหลัก
+          </a>
+        </li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 2">
+          <a [routerLink]="['/cart']" routerLinkActive="router-link-active" class="nav-link px-2 text-black hover:text-pink-500">
+            <i class="fas fa-shopping-cart"></i>
+            ตะกร้า
+          </a>
+        </li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 2">
+          <a [routerLink]="['/order-user']" routerLinkActive="router-link-active" class="nav-link px-2 text-black hover:text-pink-500">
+            <i class="fas fa-box"></i>
+            คำสั่งซื้อ
+          </a>
+        </li>
+        <!-- <li *ngIf="null != userDetail && userDetail.roleId == 1">
+          <a [routerLink]="['/dashbord-admin']" routerLinkActive="router-link-active" class="nav-link px-2 text-black hover:text-pink-500">
+            <i class="fas fa-tachometer-alt"></i>
+            หน้าแอดมิน
+          </a>
+        </li> -->
+        <li *ngIf="null != userDetail && userDetail.roleId == 1">
+          <a [routerLink]="['/manage-user']" routerLinkActive="router-link-active" class="nav-link px-2 text-black hover:text-pink-500">
+            <i class="fas fa-users"></i>
+            จัดการลูกค้า
+          </a>
+        </li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 1">
+          <a [routerLink]="['/manage-product']" routerLinkActive="router-link-active" class="nav-link px-2 text-black hover:text-pink-500">
+            <i class="fas fa-cubes"></i>
+            จัดการสินค้า
+          </a>
+        </li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 1">
+          <a [routerLink]="['/order-admin']" routerLinkActive="router-link-active" class="nav-link px-2 text-black hover:text-pink-500">
+            <i class="fas fa-clipboard-list"></i>
+            รายการสั่งซื้อ
+          </a>
+        </li>
       </ul>
 
-      <div class="text-end" *ngIf="null == userDetail">
-        <button type="button" class="btn btn-outline-light me-2" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</button>
-        <button type="button" class="btn btn-warning" [routerLink]="['/register']" routerLinkActive="router-link-active" >Sign-up</button>
-      </div>
-      <div class="text-end" *ngIf="null != userDetail">
-        <button type="button" class="btn btn-outline-light me-2" (click)="logout()" >logOut</button>
+      <div class="text-end ms-auto">
+        <button type="button" class="btn btn-outline-dark me-2 hover:bg-pink-500 " *ngIf="null == userDetail" [routerLink]="['/login']" routerLinkActive="router-link-active">
+          <i class="fas fa-sign-in-alt"></i>เข้าสู่ระบบ
+        </button>
+
+        <button type="button" class="btn btn-outline-dark me-2 hover:bg-pink-500" *ngIf="null == userDetail" [routerLink]="['/register']" routerLinkActive="router-link-active">
+          <i class="fas fa-user-plus"></i> สมัครสมาชิก
+        </button>
+        <a *ngIf="null != userDetail" [routerLink]="['/profile']" routerLinkActive="router-link-active" class="btn btn-outline-dark me-2">
+          <i class="fas fa-user"></i>
+        </a>
+        <button type="button" class="btn btn-outline-dark" *ngIf="null != userDetail" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
       </div>
     </div>
   </div>

@@ -28,7 +28,7 @@ export class ManageUserComponent implements OnInit {
 
   onUpdateUser(userId : any){
     if(userId){
-      this.router.navigate(['/profileEdit/'+ userId]);
+      this.router.navigate(['/profile/'+ userId]);
     }
   }
 

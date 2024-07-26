@@ -85,10 +85,9 @@ const routes: Routes = [
       path: 'orderDetailUser/:orderId',
       component: OrderDetailUserComponent
     },{
-      path: 'orderDetailUser/:orderId',
-      component: OrderDetailUserComponent
-    },
-    { path: 'payment', component: PaymentComponent },
+      path: 'payment/:orderId',
+      component: PaymentComponent
+    }
   ]
   }
 ];

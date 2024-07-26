@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CallserviceService } from '../services/callservice.service';
 import { DomSanitizer } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-orderDetailUser',
   templateUrl: './orderDetailUser.component.html',
@@ -16,7 +17,8 @@ export class OrderDetailUserComponent implements OnInit {
   constructor(
     private callService: CallserviceService,
     private sanitizer: DomSanitizer,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -68,7 +70,7 @@ export class OrderDetailUserComponent implements OnInit {
             this.getImage(img.productImageName, item);
           });
         } else {
-
+          // Handle error: no images found
         }
       },
       error => {
@@ -88,5 +90,26 @@ export class OrderDetailUserComponent implements OnInit {
         console.error('Error fetching image:', error);
       }
     );
+  }
+
+  navigateToPayment(): void {
+    if (this.orderId) {
+      this.router.navigate(['/payment', this.orderId]);
+    }
+  }
+
+  getStatusText(status: string): string {
+    switch (status) {
+      case 'unpaid':
+        return 'ยังไม่ชำระเงิน';
+      // case 'paid':
+      //   return 'ชำระเงินแล้ว';
+      // case 'shipped':
+      //   return 'จัดส่งแล้ว';
+      // case 'delivered':
+      //   return 'จัดส่งถึงแล้ว';
+      default:
+        return 'กำลังตรวจสอบ';
+    }
   }
 }

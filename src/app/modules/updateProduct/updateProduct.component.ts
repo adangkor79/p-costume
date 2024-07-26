@@ -23,7 +23,7 @@ export class UpdateProductComponent implements OnInit {
   productTypeList : any
   productId : any
   productImgList : any
-  imageBlobUrl : any 
+  imageBlobUrl : any
   ImageList : any = []
   image : any
   selectedFiles : any =[]
@@ -32,8 +32,8 @@ export class UpdateProductComponent implements OnInit {
   updateProductForm = this.formBuilder.group({
     productName : '',
     productDesc : '',
-    price : parseFloat('0').toFixed(2),
-    quantity : 0,
+    productPrice : parseFloat('0').toFixed(2),
+    productStock : 0,
     productTypeId : '',
     files : [],
     productId : ''
@@ -65,8 +65,8 @@ export class UpdateProductComponent implements OnInit {
     this.updateProductForm.patchValue({
       productName : data.productName,
       productDesc : data.productDesc,
-      price : data.price,
-      quantity : data.quantity,
+      productPrice : data.productPrice,
+      productStock : data.productStock,
       productTypeId : data.productTypeId,
       productId : data.productId
     })
@@ -87,7 +87,7 @@ export class UpdateProductComponent implements OnInit {
         if(this.selectedFiles[0]){
           for(const file of this.selectedFiles[0]){
             const formData = new FormData();
-            formData.append('file', file); 
+            formData.append('file', file);
             this.callService.saveImage(formData, res.data).subscribe(res=>{
               console.log("saveImage=>" , res.data)
             })
@@ -104,7 +104,7 @@ export class UpdateProductComponent implements OnInit {
               this.router.navigate(['/manage-product']);
             }
           })
-          
+
         }else{
           Swal.fire({
             icon: 'warning',
@@ -128,7 +128,7 @@ export class UpdateProductComponent implements OnInit {
 
   getImage(fileNames : any){
     this.callService.getImageByte(fileNames).subscribe((res) => {
-      let objectURL = URL.createObjectURL(res);       
+      let objectURL = URL.createObjectURL(res);
       this.imageBlobUrl = this.sanitizer.bypassSecurityTrustUrl(objectURL);
       this.ImageList.push({
         key : fileNames,

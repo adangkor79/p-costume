@@ -41,13 +41,13 @@ export class ProfileComponent implements OnInit {
     if (this.userId) {
       this.callService.getByUserId(this.userId).subscribe(res => {
         if (res.data) {
-          this.title = "Your Profile User";
+          this.title = "ข้อมูลของฉัน";
           this.userDetail = res.data;
           this.setDataForm(this.userDetail);
         }
       });
     } else {
-      this.title = "Your Profile Login";
+      this.title = "ข้อมูลของฉัน";
       let userDetailSession: any = sessionStorage.getItem("userDetail");
       this.userDetail = JSON.parse(userDetailSession);
       this.setDataForm(this.userDetail);

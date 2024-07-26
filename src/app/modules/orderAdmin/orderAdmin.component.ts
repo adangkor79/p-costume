@@ -27,7 +27,6 @@ export class OrderAdminComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching orders:', error);
-
       }
     );
   }
@@ -48,6 +47,21 @@ export class OrderAdminComponent implements OnInit {
           alert('Failed to delete the order. Please try again.');
         }
       );
+    }
+  }
+
+  getStatusText(status: string): string {
+    switch (status) {
+      case 'unpaid':
+        return 'ยังไม่ชำระเงิน';
+      // case 'paid':
+      //   return 'ชำระเงินแล้ว';
+      // case 'shipped':
+      //   return 'จัดส่งแล้ว';
+      // case 'delivered':
+      //   return 'จัดส่งถึงแล้ว';
+      default:
+        return 'กำลังตรวจสอบ';
     }
   }
 }

@@ -90,4 +90,19 @@ export class OrderDetailAdminComponent implements OnInit {
       }
     );
   }
+
+  getStatusText(status: string): string {
+    switch (status) {
+      case 'unpaid':
+        return 'ยังไม่ชำระเงิน';
+      // case 'paid':
+      //   return 'ชำระเงินแล้ว';
+      // case 'shipped':
+      //   return 'จัดส่งแล้ว';
+      // case 'delivered':
+      //   return 'จัดส่งถึงแล้ว';
+      default:
+        return 'กำลังตรวจสอบ';
+    }
+  }
 }

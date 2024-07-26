@@ -18,7 +18,7 @@ import { DataSharingService } from './modules/DataSharingService';
 @NgModule({
   declarations: [
     AppComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -31,7 +31,7 @@ import { DataSharingService } from './modules/DataSharingService';
     HttpClientModule,
     NgxPermissionsModule.forRoot(),
     ReactiveFormsModule,
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
   ],
   providers: [DataSharingService],
   bootstrap: [AppComponent]

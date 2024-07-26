@@ -1,36 +1,42 @@
-<div class="min-h-screen bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg text-white p-4">
-  <div class="container mx-auto bg-black bg-opacity-70 rounded-lg shadow-lg p-6">
-    <h2 class="text-3xl font-extrabold mb-6">Shopping Cart</h2>
+<div class="min-h-screen text-black p-4">
+  <div class="container mx-auto rounded-lg shadow-lg p-6">
+    <h2 class="text-3xl font-extrabold mb-6 text-black">ตะกร้าสินค้า</h2>
     <div *ngIf="cart.length === 0" class="text-center">
-      <p class="text-lg">Your cart is empty.</p>
+      <p class="text-lg text-black">ตะกร้าของคุณว่างเปล่า</p>
     </div>
     <div *ngIf="cart.length > 0" class="grid grid-cols-1 gap-6">
-      <div *ngFor="let item of cart" class="bg-gray-800 rounded-lg shadow-md p-4 flex items-center relative">
+      <div *ngFor="let item of cart" class="rounded-lg shadow-md p-4 flex items-center relative">
         <img [src]="item.imgList.length > 0 ? item.imgList[0].value : 'assets/default-image.jpg'" alt="product" class="w-24 h-24 object-cover rounded-lg" />
         <div class="flex-1 ml-4 grid grid-cols-6 gap-4 items-center">
           <div class="col-span-2">
-            <h3 class="text-2xl font-semibold text-white">{{ item.productName }}</h3>
-            <p class="text-gray-300">{{ item.productDesc }}</p>
+            <h3 class="text-2xl font-semibold text-black">{{ item.productName }}</h3>
+            <p class="text-black">{{ item.productDesc }}</p>
           </div>
           <div>
-            <p class="text-gray-300">Price: {{ item.productPrice | currency }}</p>
+            <p class="text-black">ราคา: {{ item.productPrice | currency:'THB' }}</p>
           </div>
+
           <div class="flex items-center">
-            <button (click)="updateQuantity(item, -1)" class="btn btn-secondary">-</button>
-            <p class="mx-2 text-gray-300">{{ item.quantity }}</p>
-            <button (click)="updateQuantity(item, 1)" class="btn btn-secondary">+</button>
+            <button (click)="updateQuantity(item, -1)" class="bg-purple-300 text-black w-20 h-10 flex items-center justify-center rounded-full hover:bg-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">
+              <span class="text-xl font-bold">-</span>
+            </button>
+            <p class="mx-2 text-black">{{ item.quantity }}</p>
+            <button (click)="updateQuantity(item, 1)" class="bg-purple-300 text-black w-20 h-10 flex items-center justify-center rounded-full hover:bg-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">
+              <span class="text-xl font-bold">+</span>
+            </button>
+          </div>
+
+          <div>
+            <p class="text-black">รวม: {{ (item.productPrice * item.quantity) | currency:'THB' }}</p>
           </div>
           <div>
-            <p class="text-gray-300">Total: {{ (item.productPrice * item.quantity) | currency }}</p>
-          </div>
-          <div>
-            <button (click)="confirmRemove(item)" class="btn btn-error">Remove</button>
+            <button (click)="confirmRemove(item)" class="btn btn-error">ลบ</button>
           </div>
         </div>
         <!-- Confirmation Dialog -->
         <div *ngIf="itemToRemove === item" class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center transition-opacity duration-300">
           <div class="bg-gray-800 p-4 rounded-lg text-center">
-            <p class="text-lg mb-4">คุณต้องการลบสินค้าหรือไม่?</p>
+            <p class="text-lg mb-4 text-white">คุณต้องการลบสินค้านี้ออกจากตะกร้าหรือไม่?</p>
             <button (click)="removeFromCartConfirmed()" class="btn btn-error mx-2">ตกลง</button>
             <button (click)="cancelRemove()" class="btn btn-secondary mx-2">ยกเลิก</button>
           </div>
@@ -38,7 +44,7 @@
       </div>
     </div>
     <div *ngIf="cart.length > 0" class="mt-6 flex justify-end">
-      <button class="btn btn-primary" (click)="checkout()">Checkout</button>
+      <button class="bg-purple-500 text-white rounded-full px-4 py-2 hover:bg-purple-700 transition-colors duration-300" (click)="checkout()">สั่งซื้อ</button>
     </div>
   </div>
 </div>

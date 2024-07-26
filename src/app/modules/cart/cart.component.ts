@@ -50,13 +50,19 @@ export class CartComponent implements OnInit {
   }
 
   updateQuantity(product: any, change: number) {
-    product.quantity += change;
-    if (product.quantity <= 0) {
-      this.confirmRemove(product);
-    } else {
+    // คำนวณจำนวนใหม่
+    const newQuantity = product.quantity + change;
+
+    // เช็คเงื่อนไขให้จำนวนไม่ต่ำกว่า 1
+    if (newQuantity > 0) {
+      product.quantity = newQuantity;
       this.updateCart();
+    } else {
+      // ยืนยันการลบสินค้าเมื่อจำนวนเป็น 0
+      this.confirmRemove(product);
     }
   }
+
 
   updateCart() {
     sessionStorage.setItem(this.userDetail.userId + 'cart', JSON.stringify(this.cart));

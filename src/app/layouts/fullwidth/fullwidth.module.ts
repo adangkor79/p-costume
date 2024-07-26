@@ -26,6 +26,7 @@ import { OrderDetailAdminComponent } from 'src/app/modules/orderDetailAdmin/orde
 import { OrderUserComponent } from 'src/app/modules/orderUser/orderUser.component';
 import { OrderDetailUserComponent } from 'src/app/modules/orderDetailUser/orderDetailUser.component';
 import { PaymentComponent } from 'src/app/modules/payment/payment.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { PaymentComponent } from 'src/app/modules/payment/payment.component';
     FormsModule,
     NgxPermissionsModule.forRoot(),
     ReactiveFormsModule,
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
+    QRCodeModule
   ],
   declarations: [
     FullwidthComponent,

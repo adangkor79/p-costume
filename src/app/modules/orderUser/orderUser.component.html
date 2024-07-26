@@ -1,40 +1,40 @@
-<div class="min-h-screen bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg text-white p-4">
-  <div class="container mx-auto bg-black bg-opacity-70 rounded-lg shadow-lg p-6">
-    <h1 class="text-3xl font-extrabold mb-6">My Orders</h1>
+<div class="min-h-screen text-black p-4">
+  <div class="container mx-auto rounded-lg shadow-lg p-6">
+    <h1 class="text-3xl font-extrabold mb-6">คำสั่งซื้อของฉัน</h1>
 
     <div *ngIf="orders.length === 0" class="text-center text-gray-400">
-      No orders found.
+      ไม่พบคำสั่งซื้อ
     </div>
 
     <div *ngIf="orders.length > 0" class="space-y-4">
-      <div *ngFor="let order of orders" class="bg-gray-800 shadow-md rounded-lg p-4 border border-gray-700">
+      <div *ngFor="let order of orders" class="shadow-md rounded-lg p-4 border border-gray-700">
         <div class="flex justify-between items-center">
           <div>
-            <h2 class="text-xl font-semibold mb-2">Order #{{ order.orderId }}</h2>
-            <p class="text-gray-300">Order Date: {{ order.orderDate | date: 'short' }}</p>
-            <p class="text-gray-300">Total Amount: ${{ order.totalAmount }}</p>
-            <p class="text-gray-300">Status: {{ order.status }}</p>
+            <h2 class="text-xl font-semibold mb-2">คำสั่งซื้อ #{{ order.orderId }}</h2>
+            <p class="text-black">วันที่สั่งซื้อ: {{ order.orderDate | date: 'short' }}</p>
+            <p class="text-black">ยอดรวม: {{ order.totalAmount | currency:'THB' }}</p>
+            <p class="text-black">สถานะ: {{ getStatusText(order.status) }}</p>
           </div>
           <div class="flex space-x-2">
-            <button 
-              class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" 
+            <button
+              class="bg-purple-400 text-white px-4 py-2 rounded hover:bg-purple-500"
               (click)="viewOrder(order)"
             >
-              View Details
+              ดูรายละเอียด
             </button>
-            <button 
-              class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700" 
+            <button
+              class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
               (click)="deleteOrder(order.orderId)"
             >
-              Delete
+              ลบ
             </button>
           </div>
         </div>
         <div class="mt-4">
-          <h3 class="font-semibold">Order Items:</h3>
+          <h3 class="font-semibold">รายการสินค้าในคำสั่งซื้อ:</h3>
           <ul class="list-disc pl-5">
-            <li *ngFor="let item of order.items" class="text-gray-300">
-              Product ID: {{ item.productId }}, Quantity: {{ item.quantity }}, Price: ${{ item.price }}
+            <li *ngFor="let item of order.items" class="text-black">
+              รหัสสินค้า: {{ item.productId }}, จำนวน: {{ item.quantity }}, ราคา: {{ item.price | currency:'THB' }}
             </li>
           </ul>
         </div>

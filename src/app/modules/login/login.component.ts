@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     private callService : CallserviceService,
     private router: Router,
     private dataSharingService: DataSharingService
-  ) { 
+  ) {
   }
 
   ngOnInit() {
@@ -36,14 +36,14 @@ export class LoginComponent implements OnInit {
     this.callService.authen(userName, userPassword).subscribe(res=>{
       console.log(res)
       if(res.data){
-        
+
         Swal.fire({
           icon: 'success',
           title: 'สำเร็จ!',
-          text: 'เข้าสู่ระบบสำเร็จจ้า',
+          text: 'เข้าสู่ระบบสำเร็จ',
           confirmButtonText: 'ตกลง',
         });
-        
+
         sessionStorage.setItem("userDetail", JSON.stringify(res.data))
         this.dataSharingService.userDetail.next(true);
         if(res.data.roleId == 1){
@@ -51,12 +51,12 @@ export class LoginComponent implements OnInit {
         }else{
           this.router.navigate(['/']);
         }
-        
+
       }else{
         Swal.fire({
           icon: 'warning',
           title: 'เข้าสู่ระบบไม่สำเร็จ!',
-          text: 'กรุณาตรวจสอบข้อมูลด้วยจ้า',
+          text: 'กรุณาตรวจสอบข้อมูลด้วย',
           confirmButtonText: 'ตกลง',
         });
       }
